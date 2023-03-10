@@ -3,11 +3,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
-const TheDatePicker = ({startDate, setStartDate}) => {
+const TheDatePicker = ({label, startDate, setStartDate}) => {
 
   const now = new Date();
 
   return (
+    <div>
+        <label>{label}</label>
     <DatePicker
       selected={startDate}
       includeDateIntervals={[
@@ -22,6 +24,7 @@ const TheDatePicker = ({startDate, setStartDate}) => {
       ]}
       onChange={(date = Date) => setStartDate(date)}
     />
+    </div>
   );
 };
 

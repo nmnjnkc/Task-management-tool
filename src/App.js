@@ -18,6 +18,9 @@ function App() {
   const [employees, setEmployees] = useState([])
   const [empUpdate, setEmpUpdate] = useState(false)
   const [activeEmpolyee, setActiveEmpolyee] = useState(null);
+  const departments = ["IT", "HR", "Sales", "Marketing", "Other"];
+  const theTaskDifficulty = ["Easy", "Medium", "Hard", "Extreme"]; 
+  const theTaskStatus = ["ToDo", "Active", "Finished", "Blocked"];
 
   const url = new URL("https://640b1ad481d8a32198d9d28b.mockapi.io/Employee");
   url.searchParams.append('completed', false);
@@ -38,7 +41,7 @@ function App() {
     employeesList();
     }, [empUpdate]
   );
-
+// console.log(employees);
   // const employees = [ 
   //   {
   //       id: 1,
@@ -223,7 +226,15 @@ function App() {
   //   ];
 
     return (
-      <ApplicationContext.Provider value={{employees, activeEmpolyee, setActiveEmpolyee, empUpdate, setEmpUpdate}}>
+      <ApplicationContext.Provider value={
+        {employees, 
+        activeEmpolyee,
+        setActiveEmpolyee, 
+        empUpdate, 
+        setEmpUpdate, 
+        departments, 
+        theTaskDifficulty, 
+        theTaskStatus}}>
         <div>
       <Header/>
       <div className='main'>

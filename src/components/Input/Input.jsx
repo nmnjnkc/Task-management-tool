@@ -15,6 +15,7 @@ const Input = ({id, label, type, placeholder, required, value, method}) => {
          onChange={(event) => {
           {method(event.target.value);}
          }} /> 
+         
     </div>
  )
 }

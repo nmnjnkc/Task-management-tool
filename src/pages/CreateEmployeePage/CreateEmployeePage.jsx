@@ -2,10 +2,11 @@ import React, {useState, useContext} from 'react'
 import ApplicationContext from '../../ApplicationContext';
 import TheDatePicker from '../../components/DatePicker/DatePicker'
 import Input from '../../components/Input/Input';
+import Select from '../../components/Select/Select';
 
 const CreateEmployeePage = () => {
 
-  const {setEmpUpdate} = useContext(ApplicationContext);
+  const {setEmpUpdate, departments } = useContext(ApplicationContext);
 
   const [fullName, setFullName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState(new Date());
@@ -17,17 +18,17 @@ const CreateEmployeePage = () => {
 
 
   function submitForm(event) {
-    
+
     event.preventDefault();
 
-    const candidate = { fullName, dateOfBirth, phoneNumber, email, department, monthlySalary };
+    const employee = { fullName, dateOfBirth, phoneNumber, email, department, monthlySalary };
 
     fetch("https://640b1ad481d8a32198d9d28b.mockapi.io/Employee", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(candidate),
+      body: JSON.stringify(employee),
     }).then(() => {
       setEmpUpdate(false);
     });
@@ -41,46 +42,62 @@ const CreateEmployeePage = () => {
       <h3>Add new employee:</h3>
       
       <Input
-       label= {"Name:"}
+        label= {"Name:"}
         placeholder={"First and Last name"}
         required = {true}
         value={fullName}
-        method={setFullName}/>
+        method={setFullName}
+      />
 
-      <div>
-        <label> Date of birth:</label>
-        <TheDatePicker startDate={dateOfBirth} setStartDate={setDateOfBirth} />
-      </div>
+      
+      <TheDatePicker 
+       label={"Date of birth:"}
+       startDate={dateOfBirth}
+       setStartDate={setDateOfBirth} 
+      />
 
       <Input
-       label= {"Phone Number:"}
+        label= {"Phone Number:"}
         placeholder={"Phone Number"}
         required = {true}
         value={phoneNumber}
-        method={setPhoneNumber}/>
+        method={setPhoneNumber}
+      />
 
       <Input
-       label= {"Email:"}
+        label= {"Email:"}
         type={"email"}
         placeholder={"Email"}
         required = {true}
         value={email}
-        method={setEmail}/>
+        method={setEmail}
+      />
       
-      <Input
-       label= {"Department:"}
+      {/* <Input
+        label= {"Department:"}
         placeholder={"Department"}
         required = {true}
         value={department}
-        method={setDepartment}/>
+        method={setDepartment}/> 
+      */}
+
+      <Select
+        label={"Department"}
+        required = {true}
+        name = {department}
+        arrayy={departments}
+        method = {setDepartment}
+      />
 
       <Input
-       label= {"Monthly Salary:"}
+        label= {"Monthly Salary:"}
         type={"number"}
         placeholder={"Department"}
         required = {true}
         value={monthlySalary}
-        method={setMonthlySalary}/>
+        method={setMonthlySalary}
+      />
+
 
       {!adding && <button>Submit</button>}
       {adding && <button disabled>Submit</button>}
