@@ -5,7 +5,6 @@ import ApplicationContext from '../../ApplicationContext'
 const Card = (employee) => {
   
 const {setActiveEmployee} = useContext(ApplicationContext)
-console.log(employee.employee);
 
   return (
     <div onClick={() => {setActiveEmployee(employee.employee)} }>

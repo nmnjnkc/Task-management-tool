@@ -1,13 +1,13 @@
 import React, {useState, useContext} from 'react'
 import ApplicationContext from '../../ApplicationContext';
-import TheDatePicker from '../../components/DatePicker/DatePicker'
 import Input from '../../components/Input/Input';
+import TheDatePicker from '../../components/DatePicker/DatePicker'
 import Select from '../../components/Select/Select';
 
 
 const CreateTaskPage = () => {
 
-  const {employees, theTaskDifficulty, theTaskStatus} = useContext(ApplicationContext);
+  const { setTaskUpdate, employees, theTaskDifficulty, theTaskStatus, adding, setAdding } = useContext(ApplicationContext);
 
   const[title, setTitle] = useState("");
   const[description, setDescription] = useState("");
@@ -19,9 +19,31 @@ const CreateTaskPage = () => {
 
   const allEmployees = employees.map(employee => employee.fullName)
 
+  function submitForm(event) {
+
+    event.preventDefault();
+
+    const task = { title, description, assignee, assignedDate, dueDate, taskDifficulty, taskStatus };
+
+    fetch("https://640b1ad481d8a32198d9d28b.mockapi.io/Tasks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(task),
+    }).then(() => {
+      setTaskUpdate(false);
+    });
+
+    setAdding(true);
+  }
+
   return (
 
-    <form>
+    <form onSubmit={submitForm}>
+
+      <h3>Add new Task:</h3>
+
       <Input
       label={"Title:"}
       placeholder={"Title"}
@@ -31,7 +53,7 @@ const CreateTaskPage = () => {
       />
 
       <div>
-        <label>Description</label>
+        <label>Description:</label>
         <textarea
         placeholder="Task description..."
         required
@@ -79,6 +101,8 @@ const CreateTaskPage = () => {
         method={setTaskStatus}
       />
 
+      {!adding && <button>Submit</button>}
+      {adding && <button disabled>Submit</button>}
     </form>
   
     )

@@ -6,7 +6,10 @@ import Select from '../../components/Select/Select';
 
 const CreateEmployeePage = () => {
 
-  const {setEmpUpdate, departments } = useContext(ApplicationContext);
+  const {setEmpUpdate, departments, adding, setAdding } = useContext(ApplicationContext);
+
+  const allDepartments = departments.map(department => department.department)
+
 
   const [fullName, setFullName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState(new Date());
@@ -14,7 +17,6 @@ const CreateEmployeePage = () => {
   const [email, setEmail] = useState("");
   const [department, setDepartment] = useState("");
   const [monthlySalary, setMonthlySalary] = useState(0)
-  const [adding, setAdding] = useState(false);
 
 
   function submitForm(event) {
@@ -72,27 +74,19 @@ const CreateEmployeePage = () => {
         value={email}
         method={setEmail}
       />
-      
-      {/* <Input
-        label= {"Department:"}
-        placeholder={"Department"}
-        required = {true}
-        value={department}
-        method={setDepartment}/> 
-      */}
 
       <Select
         label={"Department"}
         required = {true}
         name = {department}
-        arrayy={departments}
+        arrayy={allDepartments}
         method = {setDepartment}
       />
 
       <Input
         label= {"Monthly Salary:"}
         type={"number"}
-        placeholder={"Department"}
+        placeholder={"Salary"}
         required = {true}
         value={monthlySalary}
         method={setMonthlySalary}
