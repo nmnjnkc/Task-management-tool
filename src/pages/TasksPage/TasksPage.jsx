@@ -31,7 +31,7 @@ const searchedTasks = tasks.filter((task) =>
 
   return (
     <div className='landing-wrapper'>
-        <Search onChange={setSearchRes}/>
+        <Search method={setSearchRes}/>
         <div className='landing'>
             {searchedTasks.map((task, key) => {
         return <Card

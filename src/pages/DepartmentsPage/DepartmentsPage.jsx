@@ -30,7 +30,7 @@ const DepartmentsPage = () => {
 
   return (
     <div className='landing-wrapper'>
-        <Search onChange={setSearchRes}/>
+        <Search method={setSearchRes}/>
         <div className='landing'>
             {searchedDepartments.map((department, key) => {
         return <Card

@@ -32,7 +32,7 @@ const EmployeesPage = () => {
 
   return (
     <div className='landing-wrapper'>
-      <Search onChange={setSearchRes}/>
+      <Search method={setSearchRes}/>
       <div className='landing'>
       {searchedEmployees.map((emp, key) => {
         return <Card
