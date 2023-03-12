@@ -1,13 +1,13 @@
 import React, {useContext, useState} from 'react'
 import ApplicationContext from '../../ApplicationContext'
 import "./TasksPage.scss"
-import Card from '../../components/Ccard/Card'
+import Card from '../../components/Card/Card'
 import  Search  from "../../components/Search/Search"
 import SearchError from '../../components/SearchError/SearchError'
 
 const TasksPage = () => {
 
-    const {tasks, setActiveTask, setTaskUpdate} = useContext(ApplicationContext)
+    const {tasks, setTaskUpdate} = useContext(ApplicationContext)
     const [searchRes, setSearchRes] = useState("");
 
     
@@ -31,14 +31,16 @@ const searchedTasks = tasks.filter((task) =>
 
   return (
     <div className='landing-wrapper'>
-        <Search onChange={setSearchRes}/>
+        <Search method={setSearchRes}/>
         <div className='landing'>
             {searchedTasks.map((task, key) => {
         return <Card
+            setClass={"tasksCard"}
             title={task.title}
+            linkTo={`/edit-task/${task?.id}`}
             link={`/task/${task.id}`} 
             id={task.id}
-            method={setActiveTask} 
+            // method={} 
             key = {key}
             methodDel={deleteTask}
         /> })}

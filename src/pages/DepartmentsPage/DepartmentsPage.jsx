@@ -1,14 +1,14 @@
 import React, {useContext, useState} from 'react'
 import ApplicationContext from '../../ApplicationContext'
 import "./DepartmentsPage.scss"
-import Card from '../../components/Ccard/Card'
+import Card from '../../components/Card/Card'
 import  Search  from "../../components/Search/Search"
 import SearchError from '../../components/SearchError/SearchError'
 
 
 const DepartmentsPage = () => {
 
-    const {departments, setActiveDep, setDepUpdate} = useContext(ApplicationContext)
+    const {departments, setDepUpdate} = useContext(ApplicationContext)
     const [searchRes, setSearchRes] = useState("");
 
     const deleteDepartment = (id) => {
@@ -24,20 +24,24 @@ const DepartmentsPage = () => {
           })
       };
 
-      const searchedDepartments = departments.filter((department) =>
-      department.department.toLowerCase().includes(searchRes)
+      const searchedDepartments = departments?.filter((department) =>
+      department?.department?.toLowerCase().includes(searchRes)
     );
 
   return (
     <div className='landing-wrapper'>
-        <Search onChange={setSearchRes}/>
+        <Search method={setSearchRes}/>
         <div className='landing'>
-            {searchedDepartments.map((department, key) => {
+            {searchedDepartments?.map((department, key) => {
         return <Card
-            title={department.department}
-            link={`/department/${department.id}`} 
-            id={department.id}
-            method={setActiveDep} 
+            setClass={"departmentsCard"}
+            title={department?.department}
+            linkTo={`/edit-department/${department?.id}`}
+            link={`/department/${department?.id}`} 
+            id={department?.id}
+            text={"Number of Employees in the Department:"}
+            numberOfEmp={"6"}
+            // method={} 
             key = {key}
             methodDel={deleteDepartment}
         /> })}

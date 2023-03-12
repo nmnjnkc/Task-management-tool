@@ -1,9 +1,11 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import { useParams } from 'react-router';
 import ApplicationContext from '../../ApplicationContext';
 import Input from '../../components/Input/Input';
 import TheDatePicker from '../../components/DatePicker/DatePicker'
 import Select from '../../components/Select/Select';
+import SearchError from '../../components/SearchError/SearchError';
+
 
 const EditTaskPage = () => {
 
@@ -19,8 +21,12 @@ const EditTaskPage = () => {
   const[dueDate, setDueDate] = useState(currentTask?.dueDate);
   const[taskDifficulty, setTaskDifficulty] = useState(currentTask?.taskDifficulty);
   const[taskStatus, setTaskStatus] = useState(currentTask?.taskStatus);
+  const [showError, setShowError] = useState(false);
+
 
   const allEmployees = employees.map(employee => employee.fullName)
+  const allTasks = tasks?.map(task => task.id)
+  const noTasks = allTasks?.some(id => id == taskId)
 
   function submitForm(event) {
 
@@ -41,69 +47,90 @@ const EditTaskPage = () => {
     setAdding(true);
   }
 
+  useEffect(() => {
+    let timeoutId;
+    if (noTasks === false) {
+      timeoutId = setTimeout(() => {
+        setShowError(true);
+      }, 250); 
+    }
 
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [noTasks]);
 
   return (
 
-    <form onSubmit={submitForm}>
+    <div>
+      {!showError && <form onSubmit={submitForm}>
 
-      <h3>Edit {currentTask?.title} Task:</h3>
+<h3>Edit {currentTask?.title} Task:</h3>
 
-      <Input
-      label={"Edit Title:"}
-      placeholder={currentTask?.title}
-      value={title}
-      method={setTitle}
-      />
+<Input
+label={"Edit Title:"}
+placeholder={currentTask?.title}
+value={title}
+method={setTitle}
+/>
 
-      <div>
-        <label>Edit Description:</label>
-        <textarea
-        placeholder={currentTask?.description}
-        value={description}
-        onChange={(event) => {
-          setDescription(event.target.value);
-         }}
-        />
-      </div>
+<div>
+  <label>Edit Description:</label>
+  <textarea
+  placeholder={currentTask?.description}
+  value={description}
+  onChange={(event) => {
+    setDescription(event.target.value);
+   }}
+  />
+</div>
 
-      <Select
-        label={"Edit Assignee:"}
-        name={assignee}
-        arrayy={allEmployees}
-        size={10}
-        method={setAssignee}
-      />
+<Select
+  label={"Edit Assignee:"}
+  placeholder={currentTask?.taskStatus}
+  name={assignee}
+  makeArray={allEmployees}
+  size={10}
+  method={setAssignee}
+/>
 
-      <TheDatePicker 
-       label={"Edit Due date:"}
-       startDate={dueDate}
-       setStartDate={setDueDate} 
-      />
+<TheDatePicker 
+ label={"Edit Due date:"}
+ placeholder={currentTask?.dueDate}
+ startDate={dueDate}
+ setStartDate={setDueDate} 
+/>
 
-      <TheDatePicker 
-       label={"Edit date the task is asigned:"}
-       startDate={assignedDate}
-       setStartDate={setAssignedDate}
-      />
+<TheDatePicker 
+ label={"Edit date the task is asigned:"}
+ placeholder={currentTask?.assignedDate}
+ startDate={assignedDate}
+ setStartDate={setAssignedDate}
+/>
 
-      <Select
-        label={"Edit Task Difficulty:"}
-        name = {taskDifficulty}
-        arrayy={theTaskDifficulty}
-        method={setTaskDifficulty}
-      />
+<Select
+  label={"Edit Task Difficulty:"}
+  placeholder={currentTask?.taskStatus}
 
-      <Select
-        label={"Edit Task Status:"}
-        name = {taskStatus}
-        arrayy={theTaskStatus}
-        method={setTaskStatus}
-      />
+  name = {taskDifficulty}
+  makeArray={theTaskDifficulty}
+  method={setTaskDifficulty}
+/>
 
-      {!adding && <button>Submit</button>}
-      {adding && <button disabled>Submit</button>}
-    </form>
+<Select
+  label={"Edit Task Status:"}
+  placeholder={currentTask?.taskStatus}
+  name = {taskStatus}
+  makeArray={theTaskStatus}
+  method={setTaskStatus}
+/>
+
+{!adding && <button>Submit</button>}
+{adding && <button disabled>Submit</button>}
+</form>}
+{showError && <SearchError message={"There's no such Department to Edit."}/>}
+
+    </div>
 
   )
 }

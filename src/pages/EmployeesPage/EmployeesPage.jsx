@@ -1,14 +1,14 @@
 import React, {useContext, useState} from 'react'
 import ApplicationContext from '../../ApplicationContext'
 import "./EmployeesPage.scss"
-import Card from '../../components/Ccard/Card'
+import Card from '../../components/Card/Card'
 import  Search  from "../../components/Search/Search"
 import SearchError from '../../components/SearchError/SearchError'
 
 
 const EmployeesPage = () => {
   
-  const {employees, setActiveEmployee, setEmpUpdate} = useContext(ApplicationContext)
+  const {employees, setEmpUpdate} = useContext(ApplicationContext)
   const [searchRes, setSearchRes] = useState("");
   
 
@@ -32,14 +32,17 @@ const EmployeesPage = () => {
 
   return (
     <div className='landing-wrapper'>
-      <Search onChange={setSearchRes}/>
+      <Search method={setSearchRes}/>
       <div className='landing'>
       {searchedEmployees.map((emp, key) => {
         return <Card
+        setClass={"employeesCard"}
         title={emp.fullName}
+        linkTo={`/edit-employee/${emp?.id}`}
         link={`/employee/${emp.id}`} 
         id={emp.id}
-        method={setActiveEmployee} 
+        avatar={"http://clipart-library.com/images/rinrAe7BT.jpg"}
+        // method={} 
         key = {key}
         methodDel={deleteEmployee}
         /> })}

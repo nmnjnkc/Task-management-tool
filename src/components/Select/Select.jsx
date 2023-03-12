@@ -1,13 +1,14 @@
+import { placeholder } from "@babel/types";
 import React,{useState} from "react";
 
-const Select = ({label, id, name, arrayy, required, size, method}) => {
+const Select = ({label, id, name, makeArray, required, size, method, placeholder}) => {
        
 //     const [clicked, setClicked] = useState(false);
 
 //   const handleClick = (event) => {
 //     if (clicked === false) {
 //       setClicked(true);
-//       event.target.setAttribute("size", size || arrayy.length);
+//       event.target.setAttribute("size", size || makeArray.length);
 //     }
 //   };
 
@@ -24,14 +25,15 @@ const handleSelectChange = (event) => {
         <div>
         <label htmlFor={id}>{label}</label>
           <select
+          selected={placeholder}
             name={name}
             id={id}
-            size={ size || arrayy.length}
+            size={ size || makeArray.length}
             // onClick={handleClick}
             onChange={handleSelectChange}
             required = {(true) ? required : null}
             >
-                { arrayy.map((element, key) => {
+                { makeArray.map((element, key) => {
                 
                 return  <option
                  value={(typeof element !== "string") ? element : element.toLowerCase()}
