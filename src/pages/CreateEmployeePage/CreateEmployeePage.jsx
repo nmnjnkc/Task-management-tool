@@ -79,7 +79,7 @@ const CreateEmployeePage = () => {
         label={"Department"}
         required = {true}
         name = {department}
-        arrayy={allDepartments}
+        makeArray={allDepartments}
         method = {setDepartment}
       />
 

@@ -6,7 +6,7 @@ import SearchError from '../../components/SearchError/SearchError';
 
 const TaskPage = () => {
 
-  const {tasks, activeTask} = useContext(ApplicationContext);
+  const {tasks} = useContext(ApplicationContext);
   const [showError, setShowError] = useState(false);
 
   let { taskId } = useParams();
@@ -29,9 +29,6 @@ const TaskPage = () => {
     };
   }, [noTasks]);
 
-  console.log(noTasks);
-
-
 
   return (
     <div>
@@ -39,7 +36,7 @@ const TaskPage = () => {
       {currentTask?.title}
       </h3>
 
-      {showError && <SearchError message={"There's no such Tasl."}/>}
+      {showError && <SearchError message={"There's no such Task."}/>}
 
       </div>
 

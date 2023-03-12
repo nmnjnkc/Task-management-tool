@@ -5,16 +5,14 @@ import SearchError from '../../components/SearchError/SearchError';
 
 const DepartmentPage = () => {
 
-  const {departments, activeDep} = useContext(ApplicationContext);
+  const {departments} = useContext(ApplicationContext);
   const [showError, setShowError] = useState(false);
 
 
   let { departmentId } = useParams();
 
   const allDepartmentsIds = departments?.map(dep => dep.id)
-
   const currentDep = departments?.find((department) => department.id == departmentId)
-
   const noDep = allDepartmentsIds?.some(id => id == departmentId)
 
   useEffect(() => {
@@ -29,8 +27,6 @@ const DepartmentPage = () => {
       clearTimeout(timeoutId);
     };
   }, [noDep]);
-
-  console.log(noDep);
 
   return (
     <div>

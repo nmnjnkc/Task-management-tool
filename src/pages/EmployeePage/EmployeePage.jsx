@@ -6,7 +6,7 @@ import SearchError from '../../components/SearchError/SearchError';
 
 const EmployeePage = () => {
 
-  const {employees, activeEmployee} = useContext(ApplicationContext);
+  const {employees} = useContext(ApplicationContext);
   const [showError, setShowError] = useState(false);
 
   let { employeeId } = useParams();
@@ -27,8 +27,6 @@ const EmployeePage = () => {
       clearTimeout(timeoutId);
     };
   }, [noEmp]);
-
-  console.log(noEmp);
 
   return (
     <div>

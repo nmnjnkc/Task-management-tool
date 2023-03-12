@@ -32,9 +32,6 @@ function App() {
   const [taskUpdate, setTaskUpdate] = useState(false)
   const [depUpdate, setDepUpdate] = useState(false)
 
-  const [activeEmployee, setActiveEmployee] = useState(null);
-  const [activeTask, setActiveTask]= useState(null)
-  const [activeDep, setActiveDep]= useState(null)
 
 
 
@@ -100,8 +97,6 @@ useEffect(() =>
         setEmpUpdate, 
         setTaskUpdate, 
         setDepUpdate, 
-        activeEmployee,
-        setActiveEmployee, 
         empUpdate, 
         theTaskDifficulty, 
         theTaskStatus, 

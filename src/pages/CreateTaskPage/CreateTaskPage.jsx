@@ -68,7 +68,7 @@ const CreateTaskPage = () => {
         label={"Assignee:"}
         required={true}
         name={assignee}
-        arrayy={allEmployees}
+        makeArray={allEmployees}
         size={10}
         method={setAssignee}
       />
@@ -89,7 +89,7 @@ const CreateTaskPage = () => {
         label={"Task Difficulty:"}
         required = {true}
         name = {taskDifficulty}
-        arrayy={theTaskDifficulty}
+        makeArray={theTaskDifficulty}
         method={setTaskDifficulty}
       />
 
@@ -97,7 +97,7 @@ const CreateTaskPage = () => {
         label={"Task Status:"}
         required = {true}
         name = {taskStatus}
-        arrayy={theTaskStatus}
+        makeArray={theTaskStatus}
         method={setTaskStatus}
       />
 

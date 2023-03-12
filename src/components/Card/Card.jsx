@@ -1,18 +1,48 @@
-import React, {useContext} from 'react'
-import { Link } from 'react-router-dom'
-import ApplicationContext from '../../ApplicationContext'
+import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import Button from "../Button/Button"
+import "./Card.scss"
 
-const Card = (employee) => {
-  
-const {setActiveEmployee} = useContext(ApplicationContext)
+const Card = (
+  { title,
+    link, 
+    method, 
+    id, 
+    avatar,
+    imgDescription, 
+    text,
+    numberOfEmp, 
+    // methodEdit, 
+    linkTo,
+    methodDel, 
+    setClass }) => {
 
-  return (
-    <div onClick={() => {setActiveEmployee(employee.employee)} }>
-      <Link to={`/employee/${employee.employee.id}`} >   
-        <h3>{employee.employee.fullName}</h3>
-       {/* <p>{employee}</p> */}
+    const navigate = useNavigate();
+
+    const navigateToPage = () => {
+      navigate(linkTo);
+    }
+
+
+    const handleDel = () => {
+        methodDel(id);
+    }
+
+
+
+    return (
+
+    <div className={setClass} onClick={method}>
+      <Link to={link}>
+        <img className="displayImg" src={avatar} alt={imgDescription}/>
+        <h3>{title}</h3>
+        <span className="displayText">{text}</span>
+        <span className="displayNum" > {numberOfEmp} </span>
+
       </Link>
-
+      <Button name={"Edit"} method={navigateToPage}/>
+      <Button name={"Delete"} method={handleDel}/> 
+                    
     </div>
   )
 }

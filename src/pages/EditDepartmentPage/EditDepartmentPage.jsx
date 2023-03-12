@@ -1,8 +1,9 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import { useParams } from 'react-router';
 import ApplicationContext from '../../ApplicationContext';
 import Input from '../../components/Input/Input';
 import TheDatePicker from '../../components/DatePicker/DatePicker'
+import SearchError from '../../components/SearchError/SearchError';
 
 const EditDepartmentPage = () => {
 
@@ -12,9 +13,13 @@ const EditDepartmentPage = () => {
 
   const currentDep = departments?.find(dep => dep.id == departmentId)
 
-  
+  const allDepartmentsIds = departments?.map(dep => dep.id)
   const [department, setDepartment] = useState(currentDep?.department);
   const [dateCreated, setDateCreated] = useState(currentDep?.dateCreated);
+  const [showError, setShowError] = useState(false);
+  const noDep = allDepartmentsIds?.some(id => id == departmentId)
+
+
   
   function submitForm(event) {
     
@@ -28,25 +33,34 @@ const EditDepartmentPage = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(dep),
-    }).then(() => {
-      setDepUpdate(false);
-    });
+      }).then(() => {
+        setDepUpdate(false);
+      });
     
-    setAdding(true);
-  }
+      setAdding(true);
+    }
+    
   
-  console.log(department);
-  console.log(currentDep);
+    useEffect(() => {
+      let timeoutId;
+      if (noDep === false) {
+        timeoutId = setTimeout(() => {
+          setShowError(true);
+        }, 250); 
+      }
   
-  
-  return (
-    <form className=""  onSubmit={submitForm}
-    >
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }, [noDep]);
 
-      
+
+  return (
+  <div>
+   {!showError && <form className=""  onSubmit={submitForm}>
+
       <h3>Edit {currentDep?.department}  Department:</h3>
     
-      
       <Input
         label= {"Edit Departmant Name:"}
         placeholder={currentDep?.department}
@@ -57,6 +71,7 @@ const EditDepartmentPage = () => {
       
       <TheDatePicker 
        label={"Edit Date Created:"}
+       placeholder={currentDep?.dateCreated}
        startDate={dateCreated}
        setStartDate={setDateCreated} 
       />
@@ -64,7 +79,10 @@ const EditDepartmentPage = () => {
       {!adding && <button>Submit</button>}
       {adding && <button disabled>Submit</button>}
 
-    </form>
+    </form>}
+
+    {showError && <SearchError message={"There's no such Department to Edit."}/>}
+    </div>
   )
 }
 

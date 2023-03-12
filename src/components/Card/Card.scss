@@ -1,0 +1,44 @@
+.tasksCard{
+background-color: cornflowerblue;
+    .displayImg{
+        display: none;
+    }
+
+    .displayText{
+        display: none;
+
+    }
+
+    .displayNum{
+        display: none;
+    }
+
+}
+
+.employeesCard{
+    background-color: rgb(240, 192, 187);
+
+    .displayImg{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: none;
+    }
+
+    .displayText{
+        display: none;
+
+    }
+
+    .displayNum{
+        display: none;
+    }
+}
+
+.departmentsCard{
+    background-color: pink;
+    .displayImg{
+        display: none;
+    }
+
+}
