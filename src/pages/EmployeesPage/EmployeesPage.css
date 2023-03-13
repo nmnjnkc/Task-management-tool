@@ -1,0 +1,41 @@
+h2 {
+  margin: 35px 0 10px 0;
+  font-size: 32px;
+}
+
+.btnAndSrch {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.btnAndSrch button {
+  margin: 20px;
+  border: 2px solid #089bab;
+  background-color: #f7f9f9;
+  border-radius: 20px;
+  padding: 5px;
+  width: 26%;
+  height: 30px;
+}
+
+.main-page-wrapper {
+  display: flex;
+  min-width: 85%;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 85%;
+}
+
+.landing {
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.landing a {
+  text-decoration: none;
+}/*# sourceMappingURL=EmployeesPage.css.map */

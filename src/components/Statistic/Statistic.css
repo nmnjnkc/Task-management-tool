@@ -1,0 +1,20 @@
+.statistic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 40%;
+  background-color: #f7f9f9;
+}
+.statistic h3 {
+  padding: 4px;
+  margin: 60px;
+  text-align: center;
+  color: #37828a;
+  border-bottom: 3px solid #37828a;
+  font-size: 32px;
+}
+.statistic span {
+  color: #37828a;
+  font-size: 18px;
+}/*# sourceMappingURL=Statistic.css.map */

@@ -1,0 +1,81 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #def2f4;
+  border-radius: 12px;
+  height: 90px;
+  background-color: #d5e7e9;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-out;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+.card button {
+  background-color: rgba(191, 219, 222, 0.8588235294);
+  border-radius: 5px;
+  padding: 5px;
+  color: #37828a;
+  width: 60px;
+  font-weight: 800;
+  border: none;
+  margin: 5px;
+}
+.card button:hover {
+  color: #ec8477;
+  border: 1px solid #ec8477;
+}
+.card a {
+  color: #37828a;
+}
+
+.tasksCard {
+  min-width: 27%;
+  height: 90px;
+  margin: 17px;
+}
+.tasksCard h3 {
+  padding: 18px 20px 12px;
+}
+.tasksCard .displayImg {
+  display: none;
+}
+
+.employeesCard {
+  min-width: 29%;
+  height: 220px;
+  margin: 12px;
+}
+.employeesCard a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+.employeesCard a h3 {
+  padding: 10px;
+  font-size: 16px;
+}
+.employeesCard a .displayImg {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: none;
+}
+
+.departmentsCard {
+  min-width: 45%;
+  height: 190px;
+}
+.departmentsCard button {
+  padding: 5px;
+  width: 90px;
+}
+.departmentsCard h3 {
+  font-size: 32px;
+  padding: 40px;
+}
+.departmentsCard .displayImg {
+  display: none;
+}/*# sourceMappingURL=Card.css.map */
