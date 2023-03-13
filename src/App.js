@@ -31,12 +31,8 @@ function App() {
   const [depUpdate, setDepUpdate] = useState(false)
 
 
-
-
-  const [adding, setAdding] = useState(false);
-
   const theTaskDifficulty = ["Easy", "Medium", "Hard", "Extreme"]; 
-  const theTaskStatus = ["ToDo", "Active", "Finished", "Blocked"];
+  const theTaskStatus = ["ToDo", "Active", "Done", "Blocked"];
 
   const url = new URL("https://640b1ad481d8a32198d9d28b.mockapi.io/Employee");
   url.searchParams.append('completed', false);
@@ -97,9 +93,7 @@ useEffect(() =>
         setDepUpdate, 
         empUpdate, 
         theTaskDifficulty, 
-        theTaskStatus, 
-        adding, 
-        setAdding, 
+        theTaskStatus
       }}>
     <div>
       {/* <Header/> */}

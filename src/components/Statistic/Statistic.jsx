@@ -1,22 +1,19 @@
 import React from 'react'
-import Select from '../Select/Select'
 import "./Statistic.scss"
 
-const Statistic = ({makeArray, page}) => {
+
+
+const Statistic = ({name, page, statisticArray}) => {
   return (
     <div className='statistic'>
-        <h3>{page} Statistic</h3>
-        <Select label={"Available statistics:"} makeArray={[]}/>
-        <div>
-            <div>Lorem ipsum dolor sit amet consectetur</div>
-            <div>Lorem ipsum dolor sit amet consectetur</div>
-            <div>Lorem ipsum dolor sit amet consectetur</div>
-            <div>Lorem ipsum dolor sit amet consectetur</div>
-            <div>Lorem ipsum dolor sit amet consectetur</div>
-            <div>Lorem ipsum dolor sit amet consectetur</div>
-            <div>Lorem ipsum dolor sit amet consectetur</div>
+        {/* <h3>{page} Statistic</h3>
+        <h4>{name}</h4>
+        <div> 
+        {statisticArray.map( (el) => {
+          return <span>{el}</span>
+        })}
 
-        </div>
+        </div> */}
     </div>
   )
 }
