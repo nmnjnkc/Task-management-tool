@@ -1,44 +1,100 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #def2f4;
+    border-radius: 12px;
+    height: 90px;
+    background-color: #d5e7e9;
+    box-shadow: 2px 2px 2px #00000033;
+    transition: transform 0.2s ease-out;
+
+    &:hover {
+        transform: scale(1.05);
+      }
+
+    button{
+        background-color: #bfdbdedb;
+        border-radius: 5px;
+        padding: 5px;
+        color: #37828a;
+        width: 60px;
+        font-weight: 800;
+        border: none;
+        margin: 5px;
+    }
+    button:hover {
+        color: #ec8477;
+        border: 1px solid #ec8477;
+      }
+      a {
+        color: #37828a;
+
+      }
+}
+
 .tasksCard{
-background-color: cornflowerblue;
+    
+    min-width: 27%;
+    height: 90px;
+    margin: 17px;
+
+    h3{
+        padding: 18px 20px 12px;
+    }
+
     .displayImg{
-        display: none;
-    }
-
-    .displayText{
-        display: none;
-
-    }
-
-    .displayNum{
         display: none;
     }
 
 }
 
 .employeesCard{
-    background-color: rgb(240, 192, 187);
 
-    .displayImg{
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        border: none;
-    }
+    min-width: 29%;
+    height: 220px;
+    margin: 12px; 
 
-    .displayText{
-        display: none;
+    a{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 15px;
 
-    }
+        h3{
+            padding: 10px;
+            font-size: 16px;
+        }
 
-    .displayNum{
-        display: none;
+        .displayImg{
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: none;
     }
 }
 
+}
+
 .departmentsCard{
-    background-color: pink;
+    min-width: 45%;
+    height: 190px;
+
+    button{
+        padding: 5px;
+        width: 90px;
+    }
+
+    h3{
+        font-size: 32px;
+        padding: 40px;
+    }
+
+
     .displayImg{
         display: none;
     }
+
+
 
 }

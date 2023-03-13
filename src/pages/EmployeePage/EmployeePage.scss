@@ -1,0 +1,27 @@
+ .showing-page{
+    min-width: 85%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+        h3{
+            padding: 4px;
+             margin: 60px;
+             color: #37828a;
+            border-bottom: 3px solid #37828a;
+            font-size: 32px;
+        
+        }
+
+        span{
+            color: #37828a;
+            font-size: 20px;
+            padding: 20px;
+    }
+
+    // .description{
+    //     color: black;
+    //     font-size: 14px;
+    // }
+ }

@@ -1,19 +1,15 @@
 import React from 'react'
 import Input from '../Input/Input'
+import { HiSearch } from 'react-icons/hi'
 import "./Search.scss"
 
-const Search = ({method}) => {
+const Search = ({method, serach}) => {
 
-  // const handleChange = (event) => {
-  //   onChange(event.target.value);
-  // }
-
-  
   return (
 
     <div className='search'>
-      <Input placeholder="Search" method={method}/>
-      {/* <input type="text" placeholder="Search" onChange={handleChange} /> */}
+      <HiSearch className='search-icon' />
+      <Input placeholder={`Search ${serach}`} method={method}/>
     </div>
 
   )

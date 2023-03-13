@@ -15,12 +15,18 @@ const DepartmentPage = () => {
   const currentDep = departments?.find((department) => department.id == departmentId)
   const noDep = allDepartmentsIds?.some(id => id == departmentId)
 
+  const showDate = { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  };
+
   useEffect(() => {
     let timeoutId;
     if (noDep === false) {
       timeoutId = setTimeout(() => {
         setShowError(true);
-      }, 250); 
+      }, 600); 
     }
 
     return () => {
@@ -29,8 +35,9 @@ const DepartmentPage = () => {
   }, [noDep]);
 
   return (
-    <div>
+    <div className="showing-page">
       <h3>{currentDep?.department}</h3>
+      <span>Department created: {new Date(currentDep?.dateCreated)?.toLocaleDateString('en-US', showDate)}</span>
 
       {showError && <SearchError message={"There's no such Department."}/>}
       

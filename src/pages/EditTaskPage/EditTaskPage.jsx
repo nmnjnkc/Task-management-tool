@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react'
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import ApplicationContext from '../../ApplicationContext';
 import Input from '../../components/Input/Input';
 import TheDatePicker from '../../components/DatePicker/DatePicker'
@@ -10,7 +10,9 @@ import SearchError from '../../components/SearchError/SearchError';
 const EditTaskPage = () => {
 
   const {taskId} = useParams();
-  const { setTaskUpdate, employees, tasks, theTaskDifficulty, theTaskStatus, adding, setAdding } = useContext(ApplicationContext);
+  const navigate = useNavigate();
+
+  const { setTaskUpdate, employees, tasks, theTaskDifficulty, theTaskStatus } = useContext(ApplicationContext);
 
   const currentTask = tasks?.find(task => task.id == taskId)
 
@@ -42,9 +44,9 @@ const EditTaskPage = () => {
       body: JSON.stringify(task),
     }).then(() => {
       setTaskUpdate(false);
+      navigate('/tasks');
     });
 
-    setAdding(true);
   }
 
   useEffect(() => {
@@ -52,7 +54,7 @@ const EditTaskPage = () => {
     if (noTasks === false) {
       timeoutId = setTimeout(() => {
         setShowError(true);
-      }, 250); 
+      }, 600); 
     }
 
     return () => {
@@ -62,8 +64,8 @@ const EditTaskPage = () => {
 
   return (
 
-    <div>
-      {!showError && <form onSubmit={submitForm}>
+    <div className='editForm'>
+      {!showError && <form className="form" onSubmit={submitForm}>
 
 <h3>Edit {currentTask?.title} Task:</h3>
 
@@ -87,7 +89,7 @@ method={setTitle}
 
 <Select
   label={"Edit Assignee:"}
-  placeholder={currentTask?.taskStatus}
+  placeholder={currentTask?.assignee}
   name={assignee}
   makeArray={allEmployees}
   size={10}
@@ -97,20 +99,22 @@ method={setTitle}
 <TheDatePicker 
  label={"Edit Due date:"}
  placeholder={currentTask?.dueDate}
- startDate={dueDate}
- setStartDate={setDueDate} 
+ future={true}
+ inputDate={dueDate}
+ onDateChange={setDueDate} 
 />
 
 <TheDatePicker 
  label={"Edit date the task is asigned:"}
  placeholder={currentTask?.assignedDate}
- startDate={assignedDate}
- setStartDate={setAssignedDate}
+ future={false}
+ inputDate={assignedDate}
+ onDateChange={setAssignedDate}
 />
 
 <Select
   label={"Edit Task Difficulty:"}
-  placeholder={currentTask?.taskStatus}
+  placeholder={currentTask?.taskDifficulty}
 
   name = {taskDifficulty}
   makeArray={theTaskDifficulty}
@@ -125,8 +129,8 @@ method={setTitle}
   method={setTaskStatus}
 />
 
-{!adding && <button>Submit</button>}
-{adding && <button disabled>Submit</button>}
+<button>Submit</button>
+
 </form>}
 {showError && <SearchError message={"There's no such Department to Edit."}/>}
 

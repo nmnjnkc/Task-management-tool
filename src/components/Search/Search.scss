@@ -1,5 +1,21 @@
-.search{
-    width: 100%;
-    text-align: center;
-    margin: 10px;
-}
+
+.search {
+    display: flex;
+    border: 2px solid #089bab;
+    border-radius: 20px;
+    padding: 5px;
+    width: 40%;
+    margin: 20px 0;
+   
+    div{
+        input{
+            border: none;
+            background: none;
+            outline: none;        }
+    }
+  }
+  
+//   .search:focus {
+//     outline: none;
+//     box-shadow: 0 0 5px #089bab;
+//   }

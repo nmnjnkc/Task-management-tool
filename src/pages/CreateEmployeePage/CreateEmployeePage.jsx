@@ -3,10 +3,14 @@ import ApplicationContext from '../../ApplicationContext';
 import TheDatePicker from '../../components/DatePicker/DatePicker'
 import Input from '../../components/Input/Input';
 import Select from '../../components/Select/Select';
+import "./CreateEmployeePage.scss"
+import { useNavigate } from 'react-router-dom';
+
 
 const CreateEmployeePage = () => {
 
-  const {setEmpUpdate, departments, adding, setAdding } = useContext(ApplicationContext);
+  const {setEmpUpdate, departments} = useContext(ApplicationContext);
+  const navigate = useNavigate();
 
   const allDepartments = departments.map(department => department.department)
 
@@ -33,13 +37,14 @@ const CreateEmployeePage = () => {
       body: JSON.stringify(employee),
     }).then(() => {
       setEmpUpdate(false);
+      navigate('/');
+
     });
 
-    setAdding(true);
   }
 
   return (
-    <form className="" onSubmit={submitForm}>
+    <form className="form" onSubmit={submitForm}>
       
       <h3>Add new employee:</h3>
       
@@ -54,8 +59,8 @@ const CreateEmployeePage = () => {
       
       <TheDatePicker 
        label={"Date of birth:"}
-       startDate={dateOfBirth}
-       setStartDate={setDateOfBirth} 
+       inputDate={dateOfBirth}
+       onDateChange={setDateOfBirth} 
       />
 
       <Input
@@ -93,8 +98,8 @@ const CreateEmployeePage = () => {
       />
 
 
-      {!adding && <button>Submit</button>}
-      {adding && <button disabled>Submit</button>}
+      <button>Submit</button>
+      
     </form>
   );
 };

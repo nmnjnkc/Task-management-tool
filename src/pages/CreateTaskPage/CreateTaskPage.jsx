@@ -3,11 +3,13 @@ import ApplicationContext from '../../ApplicationContext';
 import Input from '../../components/Input/Input';
 import TheDatePicker from '../../components/DatePicker/DatePicker'
 import Select from '../../components/Select/Select';
+import { useNavigate } from 'react-router-dom';
 
 
 const CreateTaskPage = () => {
 
-  const { setTaskUpdate, employees, theTaskDifficulty, theTaskStatus, adding, setAdding } = useContext(ApplicationContext);
+  const { setTaskUpdate, employees, theTaskDifficulty, theTaskStatus } = useContext(ApplicationContext);
+  const navigate = useNavigate();
 
   const[title, setTitle] = useState("");
   const[description, setDescription] = useState("");
@@ -33,14 +35,15 @@ const CreateTaskPage = () => {
       body: JSON.stringify(task),
     }).then(() => {
       setTaskUpdate(false);
+      navigate('/tasks');
+
     });
 
-    setAdding(true);
   }
 
   return (
 
-    <form onSubmit={submitForm}>
+    <form className="form" onSubmit={submitForm}>
 
       <h3>Add new Task:</h3>
 
@@ -75,14 +78,14 @@ const CreateTaskPage = () => {
 
       <TheDatePicker 
        label={"Due date:"}
-       startDate={dueDate}
-       setStartDate={setDueDate} 
+       inputDate={dueDate}
+       onDateChange={setDueDate} 
       />
 
       <TheDatePicker 
        label={"Date the task is asigned:"}
-       startDate={assignedDate}
-       setStartDate={setAssignedDate}
+       inputDate={assignedDate}
+       onDateChange={setAssignedDate}
       />
 
       <Select
@@ -101,8 +104,8 @@ const CreateTaskPage = () => {
         method={setTaskStatus}
       />
 
-      {!adding && <button>Submit</button>}
-      {adding && <button disabled>Submit</button>}
+      <button>Submit</button>
+     
     </form>
   
     )

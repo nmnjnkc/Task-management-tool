@@ -1,32 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+const DatepickerComponent = ({ inputDate, onDateChange, label, placeholder }) => {
+  const [selectedDate, setSelectedDate] = useState(
+    inputDate ? new Date(inputDate) : null
+  );
 
-const TheDatePicker = ({label, startDate, setStartDate, placeholder}) => {
-
-  const now = new Date();
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    if (onDateChange) {
+      onDateChange(date.getTime());
+    }
+  };
 
   return (
     <div>
-        <label>{label}</label>
+      <label>{label}</label>
     <DatePicker
     placeholderText={placeholder}
-      selected={startDate}
-      includeDateIntervals={[
-        {
-          start: new Date(
-            now?.getFullYear() - 100,
-            now?.getMonth(),
-            now?.getDate()
-          ),
-          end: now,
-        },
-      ]}
-      onChange={(date = Date) => setStartDate(date)}
+      selected={selectedDate}
+      onChange={handleDateChange}
+      dateFormat="yyyy-MM-dd"
     />
-    </div>
+     </div>
   );
 };
 
-export default TheDatePicker;
+export default DatepickerComponent;

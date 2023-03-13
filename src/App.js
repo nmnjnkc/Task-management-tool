@@ -17,9 +17,7 @@ import DepartmentPage from "./pages/DepartmentPage/DepartmentPage"
 import CreateDepartmentPage from './pages/CreateDepartmentPage/CreateDepartmentPage';
 import EditDepartmentPage from './pages/EditDepartmentPage/EditDepartmentPage';
 
-import Header from "./components/Header/Header"
 import Navigation from "./components/Navigation/Navigation"
-import Footer from "./components/Footer/Footer"
 
 
 function App() {
@@ -104,7 +102,7 @@ useEffect(() =>
         setAdding, 
       }}>
     <div>
-      <Header/>
+      {/* <Header/> */}
       <div className='main'>
       <Navigation/>
       <Routes>
@@ -126,7 +124,7 @@ useEffect(() =>
         <Route path="*" element={<ErrorPage/>}/>
       </Routes>
       </div>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
     </ApplicationContext.Provider>
   );

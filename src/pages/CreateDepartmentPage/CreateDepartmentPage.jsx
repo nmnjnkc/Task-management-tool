@@ -1,4 +1,5 @@
 import React, {useState, useContext} from 'react'
+import { useNavigate } from 'react-router';
 import ApplicationContext from '../../ApplicationContext';
 import Input from '../../components/Input/Input';
 import TheDatePicker from '../../components/DatePicker/DatePicker'
@@ -6,7 +7,8 @@ import TheDatePicker from '../../components/DatePicker/DatePicker'
 
 const CreateDepartmentPage = () => {
 
-  const {setDepUpdate, adding, setAdding } = useContext(ApplicationContext);
+  const {setDepUpdate } = useContext(ApplicationContext);
+  const navigate = useNavigate();
 
   const [department, setDepartment] = useState("");
   const [dateCreated, setDateCreated] = useState(new Date());
@@ -25,13 +27,14 @@ const CreateDepartmentPage = () => {
       body: JSON.stringify(dep),
     }).then(() => {
       setDepUpdate(false);
+      navigate('/departments');
     });
 
-    setAdding(true);
+    
   }
 
   return (
-    <form className="" onSubmit={submitForm}>
+    <form className="form" onSubmit={submitForm}>
       
       <h3>Add new Department:</h3>
       
@@ -46,12 +49,11 @@ const CreateDepartmentPage = () => {
       
       <TheDatePicker 
        label={"Date of birth:"}
-       startDate={dateCreated}
-       setStartDate={setDateCreated} 
+       inputDate={dateCreated}
+       onDateChange={setDateCreated} 
       />
 
-      {!adding && <button>Submit</button>}
-      {adding && <button disabled>Submit</button>}
+      <button>Submit</button>
 
     </form>
   )

@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react'
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import ApplicationContext from '../../ApplicationContext';
 import Input from '../../components/Input/Input';
 import TheDatePicker from '../../components/DatePicker/DatePicker'
@@ -9,7 +9,9 @@ import SearchError from '../../components/SearchError/SearchError';
 const EditEmployeePage = () => {
 
   const {employeeId} = useParams();
-  const {setEmpUpdate,employees, departments, adding, setAdding } = useContext(ApplicationContext);
+  const navigate = useNavigate();
+
+  const {setEmpUpdate,employees, departments } = useContext(ApplicationContext);
   
   const currentEmp = employees?.find(emp => emp?.id == employeeId)
   
@@ -39,9 +41,10 @@ const EditEmployeePage = () => {
       body: JSON.stringify(employee),
     }).then(() => {
       setEmpUpdate(false);
-    });
+      navigate('/');
 
-    setAdding(true);
+    })
+
   }
 
   useEffect(() => {
@@ -49,7 +52,7 @@ const EditEmployeePage = () => {
     if (noEmp === false) {
       timeoutId = setTimeout(() => {
         setShowError(true);
-      }, 250); 
+      }, 1000); 
     }
 
     return () => {
@@ -58,8 +61,8 @@ const EditEmployeePage = () => {
   }, [noEmp]);
 
   return (
-    <div>
-      {!showError && <form className="" onSubmit={submitForm}>
+    <div className='editForm'>
+      {!showError && <form className="form" onSubmit={submitForm}>
       
       <h3>Edit {currentEmp?.fullName} Employee:</h3>
      
@@ -74,8 +77,8 @@ const EditEmployeePage = () => {
      <TheDatePicker 
       label={"Edit Date of Birth:"}
       placeholder={currentEmp?.dateOfBirth}
-      startDate={dateOfBirth}
-      setStartDate={setDateOfBirth} 
+      inputDate={dateOfBirth}
+      onDateChange={setDateOfBirth} 
      />
 
      <Input
@@ -110,8 +113,8 @@ const EditEmployeePage = () => {
      />
 
 
-     {!adding && <button>Submit</button>}
-     {adding && <button disabled>Submit</button>}
+     <button>Submit</button>
+     
    </form>}
    {showError && <SearchError message={"There's no such Employee to Edit."}/>}
     </div>

@@ -13,15 +13,20 @@ const TaskPage = () => {
 
   const currentTask = tasks.find((task) => task.id == taskId)
   const allTasks = tasks?.map(task => task.id)
-  const noTasks = allTasks?.some(id => id == taskId)
+  const noTasks = allTasks?.some(id => id == taskId) 
 
+  const showDate = { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  };
   
   useEffect(() => {
     let timeoutId;
     if (noTasks === false) {
       timeoutId = setTimeout(() => {
         setShowError(true);
-      }, 250); 
+      }, 600); 
     }
 
     return () => {
@@ -31,10 +36,30 @@ const TaskPage = () => {
 
 
   return (
-    <div>
+    <div className="showing-page">
       <h3>
       {currentTask?.title}
       </h3>
+
+      <span >
+        Description: {currentTask?.description}
+        </span>
+        <span>
+        Assignee: {currentTask?.assignee}
+        </span>
+      <span>
+      Due date: {new Date(currentTask?.dueDate)?.toLocaleDateString('en-US', showDate)} 
+        </span>
+        <span>
+          Date the task is asigned: {new Date(currentTask?.assignedDate)?.toLocaleDateString('en-US', showDate)} 
+        </span>
+        <span>
+        Task Difficulty: {currentTask?.taskDifficulty}
+        </span>
+        <span>
+        Task Status: {currentTask?.taskStatus}
+        </span>
+        
 
       {showError && <SearchError message={"There's no such Task."}/>}
 

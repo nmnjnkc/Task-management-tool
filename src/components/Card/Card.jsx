@@ -10,8 +10,6 @@ const Card = (
     id, 
     avatar,
     imgDescription, 
-    text,
-    numberOfEmp, 
     // methodEdit, 
     linkTo,
     methodDel, 
@@ -32,16 +30,15 @@ const Card = (
 
     return (
 
-    <div className={setClass} onClick={method}>
+    <div className={`card ${setClass}`} onClick={method}>
       <Link to={link}>
         <img className="displayImg" src={avatar} alt={imgDescription}/>
         <h3>{title}</h3>
-        <span className="displayText">{text}</span>
-        <span className="displayNum" > {numberOfEmp} </span>
-
       </Link>
+      <div> 
       <Button name={"Edit"} method={navigateToPage}/>
       <Button name={"Delete"} method={handleDel}/> 
+      </div>
                     
     </div>
   )

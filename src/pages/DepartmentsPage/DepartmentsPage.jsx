@@ -1,9 +1,14 @@
 import React, {useContext, useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 import ApplicationContext from '../../ApplicationContext'
 import "./DepartmentsPage.scss"
 import Card from '../../components/Card/Card'
 import  Search  from "../../components/Search/Search"
 import SearchError from '../../components/SearchError/SearchError'
+import Statistic from '../../components/Statistic/Statistic'
+import Button from '../../components/Button/Button'
+
+
 
 
 const DepartmentsPage = () => {
@@ -28,9 +33,22 @@ const DepartmentsPage = () => {
       department?.department?.toLowerCase().includes(searchRes)
     );
 
+    const navigate = useNavigate();
+
+    const navigateToPage = () => {
+      navigate("/create-new-department");
+    }
+
   return (
-    <div className='landing-wrapper'>
-        <Search method={setSearchRes}/>
+    <div className='main-page-wrapper'>
+    <div className='page-wrapper'>
+      <h2>All Departments</h2>
+      <div className="btnAndSrch">
+      <Button name={"Cereate Department"} method={navigateToPage}/>
+        <Search 
+        serach={"departments"}
+        method={setSearchRes}/>
+        </div>
         <div className='landing'>
             {searchedDepartments?.map((department, key) => {
         return <Card
@@ -39,8 +57,6 @@ const DepartmentsPage = () => {
             linkTo={`/edit-department/${department?.id}`}
             link={`/department/${department?.id}`} 
             id={department?.id}
-            text={"Number of Employees in the Department:"}
-            numberOfEmp={"6"}
             // method={} 
             key = {key}
             methodDel={deleteDepartment}
@@ -48,6 +64,8 @@ const DepartmentsPage = () => {
       {(searchedDepartments.length === 0) && (searchRes.length !== 0) && 
       <SearchError message = {"There's no Department with that name in the database."}/>}
     </div>
+  </div>
+   <Statistic  page={"Departments"}/>
   </div>
   )
 }
