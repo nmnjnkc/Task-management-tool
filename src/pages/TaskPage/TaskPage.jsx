@@ -45,7 +45,7 @@ const TaskPage = () => {
         Description: {currentTask?.description}
         </span>
         <span>
-        Assignee: {currentTask?.assignee}
+        Assignee: {currentTask?.assagnee}
         </span>
       <span>
       Due date: {new Date(currentTask?.dueDate)?.toLocaleDateString('en-US', showDate)} 

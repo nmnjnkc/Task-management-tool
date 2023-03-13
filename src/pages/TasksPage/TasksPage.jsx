@@ -67,7 +67,7 @@ const searchedTasks = tasks.filter((task) =>
       <SearchError message = {"There's no such task in the database."}/>}
       </div>
     </div>
-   <Statistic page={"Tasks"}/>
+   {/* <Statistic page={"Tasks"}/> */}
   </div>
   )
 }

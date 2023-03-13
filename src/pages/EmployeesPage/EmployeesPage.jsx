@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import ApplicationContext from '../../ApplicationContext'
 import "./EmployeesPage.scss"
@@ -11,9 +11,38 @@ import Button from '../../components/Button/Button'
 
 const EmployeesPage = () => {
   
-  const {employees, setEmpUpdate} = useContext(ApplicationContext)
+  const {employees, setEmpUpdate, tasks, empUpdate} = useContext(ApplicationContext)
   const [searchRes, setSearchRes] = useState("");
-  
+  const [topEmployees, setTopEmployees] = useState([]);
+
+  useEffect(() => {
+    const currentDate = new Date();
+    const pastMonth = new Date();
+    pastMonth?.setMonth(currentDate?.getMonth() - 1);
+    
+    const tasksPastM = tasks?.filter(task => new Date(task?.dateAssigned) > pastMonth);
+
+    const tasksCompletedEmp = {};
+
+    tasksPastM?.map(task => {
+      if (tasksCompletedEmp[task?.assagnee]) {
+        tasksCompletedEmp[task?.assagnee]++;
+      } else {
+        tasksCompletedEmp[task?.assagnee] = 1;
+      }
+    });
+
+    const empTasksArray = [];
+    employees?.map(emp => {
+      const tasksCompleted = tasksCompletedEmp[emp?.fullName?.toLowerCase()] || 0;
+      empTasksArray?.push({ employeeName: emp?.fullName?.toLowerCase(), tasksCompleted });
+    });
+
+    empTasksArray?.sort((a, b) => b?.tasksCompleted - a?.tasksCompleted);
+
+    setTopEmployees(empTasksArray?.slice(0, 5));
+  }, [empUpdate]);
+
 
   const deleteEmployee = (id) => {
     fetch(`https://640b1ad481d8a32198d9d28b.mockapi.io/Employee/${id}`, {
@@ -49,8 +78,8 @@ const EmployeesPage = () => {
       <Button name={"Cereate Employee"} method={navigateToPage}/>
       <Search 
       
-                      serach={"employees"}
-                      method={setSearchRes}/>
+      serach={"employees"}
+       method={setSearchRes}/>
 </div>
         <div className='landing'>
         {searchedEmployees.map((emp, key) => {
@@ -69,7 +98,7 @@ const EmployeesPage = () => {
          <SearchError message = {"There's no employee with that name in the database."}/>}
         </div>
       </div>
-     <Statistic  page={"Employees"}/>
+     <Statistic  page={"Employees"} name={"Top 5 Employees:"} statisticArray={topEmployees} />
     </div>
 
   )

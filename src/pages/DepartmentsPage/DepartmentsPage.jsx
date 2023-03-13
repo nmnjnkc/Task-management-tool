@@ -65,7 +65,7 @@ const DepartmentsPage = () => {
       <SearchError message = {"There's no Department with that name in the database."}/>}
     </div>
   </div>
-   <Statistic  page={"Departments"}/>
+   {/* <Statistic  page={"Departments"}/> */}
   </div>
   )
 }

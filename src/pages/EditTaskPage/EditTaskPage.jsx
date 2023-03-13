@@ -18,7 +18,7 @@ const EditTaskPage = () => {
 
   const[title, setTitle] = useState(currentTask?.title);
   const[description, setDescription] = useState(currentTask?.description);
-  const[assignee, setAssignee] = useState(currentTask?.assignee);
+  const[assagnee, setAssagnee] = useState(currentTask?.assagnee);
   const[assignedDate, setAssignedDate] = useState(currentTask?.assignedDate);
   const[dueDate, setDueDate] = useState(currentTask?.dueDate);
   const[taskDifficulty, setTaskDifficulty] = useState(currentTask?.taskDifficulty);
@@ -34,7 +34,7 @@ const EditTaskPage = () => {
 
     event.preventDefault();
 
-    const task = { title, description, assignee, assignedDate, dueDate, taskDifficulty, taskStatus };
+    const task = { title, description, assagnee, assignedDate, dueDate, taskDifficulty, taskStatus };
 
     fetch(`https://640b1ad481d8a32198d9d28b.mockapi.io/Tasks/${currentTask.id}`, {
       method: "PUT",
@@ -89,11 +89,11 @@ method={setTitle}
 
 <Select
   label={"Edit Assignee:"}
-  placeholder={currentTask?.assignee}
-  name={assignee}
+  placeholder={currentTask?.assagnee}
+  name={assagnee}
   makeArray={allEmployees}
   size={10}
-  method={setAssignee}
+  method={setAssagnee}
 />
 
 <TheDatePicker 

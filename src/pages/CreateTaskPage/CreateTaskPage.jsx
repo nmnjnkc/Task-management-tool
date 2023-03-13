@@ -13,7 +13,7 @@ const CreateTaskPage = () => {
 
   const[title, setTitle] = useState("");
   const[description, setDescription] = useState("");
-  const[assignee, setAssignee] = useState("");
+  const[assagnee, setAssagnee] = useState("");
   const[assignedDate, setAssignedDate] = useState(new Date());
   const[dueDate, setDueDate] = useState(new Date());
   const[taskDifficulty, setTaskDifficulty] = useState("");
@@ -25,7 +25,7 @@ const CreateTaskPage = () => {
 
     event.preventDefault();
 
-    const task = { title, description, assignee, assignedDate, dueDate, taskDifficulty, taskStatus };
+    const task = { title, description, assagnee, assignedDate, dueDate, taskDifficulty, taskStatus };
 
     fetch("https://640b1ad481d8a32198d9d28b.mockapi.io/Tasks", {
       method: "POST",
@@ -70,10 +70,10 @@ const CreateTaskPage = () => {
       <Select
         label={"Assignee:"}
         required={true}
-        name={assignee}
+        name={assagnee}
         makeArray={allEmployees}
         size={10}
-        method={setAssignee}
+        method={setAssagnee}
       />
 
       <TheDatePicker 
