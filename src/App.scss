@@ -2,4 +2,12 @@
     display: flex;
     min-height: 100vh;
     background-color: #e6f5f69e;
+
+    @media screen and (max-width: 768px) {
+
+        flex-direction: column;
+      
+        
+      }
+
 }

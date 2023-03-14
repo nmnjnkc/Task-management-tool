@@ -36,7 +36,7 @@ const handleSelectChange = (event) => {
                 { makeArray.map((element, key) => {
                 
                 return  <option
-                 value={(typeof element !== "string") ? element : element.toLowerCase()}
+                 value={(typeof element !== "string") ? element : element}
                   key={key}
                   >{element}</option>
                 })

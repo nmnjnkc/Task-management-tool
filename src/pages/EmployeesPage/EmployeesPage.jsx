@@ -13,36 +13,33 @@ const EmployeesPage = () => {
   
   const {employees, setEmpUpdate, tasks, empUpdate} = useContext(ApplicationContext)
   const [searchRes, setSearchRes] = useState("");
-  const [topEmployees, setTopEmployees] = useState([]);
+  // const [topEmployees, setTopEmployees] = useState([]);
 
-  useEffect(() => {
-    const currentDate = new Date();
-    const pastMonth = new Date();
-    pastMonth?.setMonth(currentDate?.getMonth() - 1);
-    
-    const tasksPastM = tasks?.filter(task => new Date(task?.dateAssigned) > pastMonth);
 
-    const tasksCompletedEmp = {};
+  // useEffect(() => {
+        const tasksPastM = tasks?.filter(task => task?.assignedDate  > 2592000000 );
 
-    tasksPastM?.map(task => {
-      if (tasksCompletedEmp[task?.assagnee]) {
-        tasksCompletedEmp[task?.assagnee]++;
-      } else {
-        tasksCompletedEmp[task?.assagnee] = 1;
-      }
-    });
+        const doneTasks = tasksPastM?.filter(task => task?.taskStatus === "Done");
 
-    const empTasksArray = [];
-    employees?.map(emp => {
-      const tasksCompleted = tasksCompletedEmp[emp?.fullName?.toLowerCase()] || 0;
-      empTasksArray?.push({ employeeName: emp?.fullName?.toLowerCase(), tasksCompleted });
-    });
+  const res = Object.values(doneTasks
+    ?.reduce((acc, doneTask) => {
+    if(!acc[doneTask?.assagnee]) {
+      acc[doneTask?.assagnee] = {name: doneTask?.assagnee, occurrence: 0}
+    }
+    acc[doneTask.assagnee].occurrence++;
+    return acc
+  
+  },[]))
+  ?.sort((a,b) => {return b?.occurrence - a?.occurrence})
+  ?.slice(0, 5)
 
-    empTasksArray?.sort((a, b) => b?.tasksCompleted - a?.tasksCompleted);
+  const resultNames = res?.map(el => el?.name);
 
-    setTopEmployees(empTasksArray?.slice(0, 5));
-  }, [empUpdate]);
+  // setTopEmployees(resultNames)
+//   console.log("bla");
+// }, [empUpdate]);
 
+console.log(resultNames, "bla2");
 
   const deleteEmployee = (id) => {
     fetch(`https://640b1ad481d8a32198d9d28b.mockapi.io/Employee/${id}`, {
@@ -98,7 +95,7 @@ const EmployeesPage = () => {
          <SearchError message = {"There's no employee with that name in the database."}/>}
         </div>
       </div>
-     <Statistic  page={"Employees"} name={"Top 5 Employees:"} statisticArray={topEmployees} />
+     <Statistic  page={"Employees"} name={"Top 5 Employees:"} statisticArray={resultNames} />
     </div>
 
   )
