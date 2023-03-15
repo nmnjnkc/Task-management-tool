@@ -27,10 +27,9 @@ const Card = (
     }
 
 
-
     return (
 
-    <div className={`card ${setClass}`} onClick={method}>
+    <div className={setClass} onClick={method}>
       <Link to={link}>
         <img className="displayImg" src={avatar} alt={imgDescription}/>
         <h3>{title}</h3>

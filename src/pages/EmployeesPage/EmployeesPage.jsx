@@ -1,25 +1,18 @@
-import React, {useContext, useState, useEffect} from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, {useContext, useState} from 'react'
 import ApplicationContext from '../../ApplicationContext'
 import "./EmployeesPage.scss"
-import Card from '../../components/Card/Card'
-import  Search  from "../../components/Search/Search"
-import SearchError from '../../components/SearchError/SearchError'
 import Statistic from '../../components/Statistic/Statistic'
-import Button from '../../components/Button/Button'
+import CardWrapper from '../../components/CardWrapper/CardWrapper'
 
 
 const EmployeesPage = () => {
   
   const {employees, setEmpUpdate, tasks, empUpdate} = useContext(ApplicationContext)
-  const [searchRes, setSearchRes] = useState("");
-  // const [topEmployees, setTopEmployees] = useState([]);
 
 
-  // useEffect(() => {
-        const tasksPastM = tasks?.filter(task => task?.assignedDate  > 2592000000 );
+  const tasksPastM = tasks?.filter(task => task?.assignedDate  > 2592000000 );
 
-        const doneTasks = tasksPastM?.filter(task => task?.taskStatus === "Done");
+  const doneTasks = tasksPastM?.filter(task => task?.taskStatus === "Done");
 
   const res = Object.values(doneTasks
     ?.reduce((acc, doneTask) => {
@@ -35,11 +28,6 @@ const EmployeesPage = () => {
 
   const resultNames = res?.map(el => el?.name);
 
-  // setTopEmployees(resultNames)
-//   console.log("bla");
-// }, [empUpdate]);
-
-console.log(resultNames, "bla2");
 
   const deleteEmployee = (id) => {
     fetch(`https://640b1ad481d8a32198d9d28b.mockapi.io/Employee/${id}`, {
@@ -55,47 +43,24 @@ console.log(resultNames, "bla2");
   };
 
 
-  const searchedEmployees = employees.filter((employee) =>
-    employee.fullName.toLowerCase().includes(searchRes)
-  );
-
-  const navigate = useNavigate();
-
-  const navigateToPage = () => {
-    navigate("/create-new-employee");
-  }
 
   return (
 
     <div className='main-page-wrapper'> 
-
+    
       <div className='page-wrapper'>
         <h2>All Employees</h2>
-<div className="btnAndSrch">
-      <Button name={"Cereate Employee"} method={navigateToPage}/>
-      <Search 
-      
-      serach={"employees"}
-       method={setSearchRes}/>
-</div>
-        <div className='landing'>
-        {searchedEmployees.map((emp, key) => {
-         return <Card
-         setClass={"employeesCard"}
-         title={emp.fullName}
-         linkTo={`/edit-employee/${emp?.id}`}
-         link={`/employee/${emp.id}`} 
-         id={emp.id}
-          avatar={"http://clipart-library.com/images/rinrAe7BT.jpg"}
-          // method={} 
-          key = {key}
-          methodDel={deleteEmployee}
-          /> })}
-         {(searchedEmployees.length === 0) && (searchRes.length !== 0) && 
-         <SearchError message = {"There's no employee with that name in the database."}/>}
-        </div>
+        <CardWrapper 
+        createPage={"/create-new-employee"} 
+        deleteEmployee={deleteEmployee}
+        setClass={"employeesCard"}
+        surchArray={employees} 
+        searchKey={"fullName"}/>
+
       </div>
+
      <Statistic  page={"Employees"} name={"Top 5 Employees:"} statisticArray={resultNames} />
+
     </div>
 
   )
