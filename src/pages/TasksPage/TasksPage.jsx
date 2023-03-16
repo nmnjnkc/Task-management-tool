@@ -42,6 +42,9 @@ const TasksPage = () => {
         deleteEmployee={deleteTask}
         setClass={"tasksCard"}
         searchKey={"title"}
+        edit={"edit-task"}
+        path={"task"}
+
         />
 
       </div>

@@ -55,7 +55,10 @@ const EmployeesPage = () => {
         deleteEmployee={deleteEmployee}
         setClass={"employeesCard"}
         surchArray={employees} 
-        searchKey={"fullName"}/>
+        searchKey={"fullName"}
+        edit={"edit-employee"}
+        path={"employee"}
+        />
 
       </div>
 

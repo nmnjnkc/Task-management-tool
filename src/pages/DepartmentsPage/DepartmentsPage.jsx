@@ -40,6 +40,8 @@ const DepartmentsPage = () => {
       deleteEmployee={deleteDepartment}
       setClass={"departmentsCard"}
       searchKey={"department"}
+      edit={"edit-department"}
+      path={"department"}
       />
 
     </div>

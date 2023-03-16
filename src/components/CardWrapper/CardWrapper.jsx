@@ -12,7 +12,7 @@ import gridImg from "../../assets/grid.png"
 import listImg from "../../assets/list.png"
 
 
-const CardWrapper = ({heading, createPage, surchArray, deleteEmployee, setClass, searchKey}) => {
+const CardWrapper = ({heading, createPage, surchArray, deleteEmployee, setClass, searchKey, edit, path}) => {
 
     const [view, setView] = useState(true);
     const [searchRes, setSearchRes] = useState("");
@@ -25,7 +25,7 @@ const CardWrapper = ({heading, createPage, surchArray, deleteEmployee, setClass,
     const searched = surchArray.filter((el) =>
     el[searchKey].toLowerCase().includes(searchRes)
     );
-
+    
   return (
     <div className='card-wrapper'>
         <h2>{heading}</h2>
@@ -41,8 +41,8 @@ const CardWrapper = ({heading, createPage, surchArray, deleteEmployee, setClass,
          return <Card
          title={el[searchKey]}
          setClass={(view ? `card ${setClass}` : "list")}
-         linkTo={`/edit-employee/${el?.id}`}
-         link={`/employee/${el.id}`} 
+         linkTo={`/${edit}/${el?.id}`}
+         link={`/${path}/${el.id}`} 
          id={el.id}
           avatar={"http://clipart-library.com/images/rinrAe7BT.jpg"}
           key = {key}

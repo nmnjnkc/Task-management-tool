@@ -51,9 +51,15 @@
       border-bottom: 1px solid #000;
       display: flex;
       justify-content: space-around;
+      align-items: end;
       width: 80%; 
+      height: 100px;
 
       a{
+
+        text-decoration: none;
+        display: flex;
+        min-width: 50%;
 
           img {
             width: 30px;
@@ -66,6 +72,25 @@
       h3 {
         margin-left: 20px;
         font-size: 1.5em;
+      }
+
+      button{
+        background-color: #bfdbdedb;
+        border-radius: 5px;
+        padding: 5px;
+        color: #37828a;
+        width: 60px;
+        font-weight: 800;
+        border: none;
+        margin: 5px;
+    }
+    button:hover {
+        color: #ec8477;
+        border: 1px solid #ec8477;
+      }
+      a {
+        color: #37828a;
+
       }
 
     }
