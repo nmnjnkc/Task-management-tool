@@ -84,6 +84,7 @@ useEffect(() =>
  
 
     return (
+      
       <ApplicationContext.Provider value={
         {employees, 
         tasks,
@@ -121,6 +122,7 @@ useEffect(() =>
       {/* <Footer/> */}
     </div>
     </ApplicationContext.Provider>
+    
   );
 }
 

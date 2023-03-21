@@ -72,7 +72,6 @@ const CreateTaskPage = () => {
         required={true}
         name={assagnee}
         makeArray={allEmployees}
-        size={10}
         method={setAssagnee}
       />
 

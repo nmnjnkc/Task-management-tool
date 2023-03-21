@@ -1,5 +1,4 @@
-import React, {useContext, useState} from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, {useContext} from 'react'
 import ApplicationContext from '../../ApplicationContext'
 import "./TasksPage.scss"
 import CardWrapper from '../../components/CardWrapper/CardWrapper'
@@ -12,18 +11,7 @@ const TasksPage = () => {
     const {tasks, setTaskUpdate} = useContext(ApplicationContext)
 
     
-  const deleteTask = (id) => {
-    fetch(`https://640b1ad481d8a32198d9d28b.mockapi.io/Tasks/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then(() => {
-        setTaskUpdate(false);
-      })
-  };
+
 
 // const searchedTasks = tasks.filter((task) =>
 //     task.title.toLowerCase().includes(searchRes)
@@ -37,13 +25,15 @@ const TasksPage = () => {
       <div className='page-wrapper'>
         <h2>All Tasks</h2>
         <CardWrapper 
-        createPage={"/create-new-task"} 
+        createPage={"/create-new-task"}
+        deleteURL={"https://640b1ad481d8a32198d9d28b.mockapi.io/Tasks/"}
+        refreshData = {setTaskUpdate} 
         surchArray={tasks} 
-        deleteEmployee={deleteTask}
-        setClass={"tasksCard"}
+        setClass={"tasksCard no-img"}
         searchKey={"title"}
         edit={"edit-task"}
         path={"task"}
+        listClass = {"no-img"}
 
         />
 

@@ -12,10 +12,12 @@ import gridImg from "../../assets/grid.png"
 import listImg from "../../assets/list.png"
 
 
-const CardWrapper = ({heading, createPage, surchArray, deleteEmployee, setClass, searchKey, edit, path}) => {
+const CardWrapper = ({heading,refreshData,
+  deleteURL, createPage, surchArray, deleteEmployee, setClass, searchKey, edit, path, setModalActive, listClass }) => {
 
     const [view, setView] = useState(true);
     const [searchRes, setSearchRes] = useState("");
+    
     const navigate = useNavigate();
 
   const navigateToPage = () => {
@@ -40,7 +42,10 @@ const CardWrapper = ({heading, createPage, surchArray, deleteEmployee, setClass,
         {searched.map((el, key) => {
          return <Card
          title={el[searchKey]}
-         setClass={(view ? `card ${setClass}` : "list")}
+         refreshData = {refreshData}
+         deleteURL = {deleteURL}
+         setModalActive={setModalActive}
+         setClass={(view ? `card ${setClass}` : `list ${listClass}`)}
          linkTo={`/${edit}/${el?.id}`}
          link={`/${path}/${el.id}`} 
          id={el.id}

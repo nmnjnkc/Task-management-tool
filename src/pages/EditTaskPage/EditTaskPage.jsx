@@ -92,7 +92,6 @@ method={setTitle}
   placeholder={currentTask?.assagnee}
   name={assagnee}
   makeArray={allEmployees}
-  size={10}
   method={setAssagnee}
 />
 
@@ -115,7 +114,6 @@ method={setTitle}
 <Select
   label={"Edit Task Difficulty:"}
   placeholder={currentTask?.taskDifficulty}
-
   name = {taskDifficulty}
   makeArray={theTaskDifficulty}
   method={setTaskDifficulty}

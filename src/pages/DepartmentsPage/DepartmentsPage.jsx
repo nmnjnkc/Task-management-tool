@@ -11,18 +11,6 @@ const DepartmentsPage = () => {
 
     const {departments, setDepUpdate} = useContext(ApplicationContext)
 
-    const deleteDepartment = (id) => {
-        fetch(`https://640c5491a3e07380e8f1d0c3.mockapi.io/Departments/${id}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((res) => res.json())
-          .then(() => {
-            setDepUpdate(false);
-          })
-      };
 
     //   const searchedDepartments = departments?.filter((department) =>
     //   department?.department?.toLowerCase().includes(searchRes)
@@ -35,13 +23,15 @@ const DepartmentsPage = () => {
     <div className='page-wrapper'>
       <h2>All Tasks</h2>
       <CardWrapper 
-      createPage={"/create-new-department"} 
+      createPage={"/create-new-department"}
+      deleteURL={"https://640c5491a3e07380e8f1d0c3.mockapi.io/Departments/"}
+      refreshData = {setDepUpdate} 
       surchArray={departments} 
-      deleteEmployee={deleteDepartment}
       setClass={"departmentsCard"}
       searchKey={"department"}
       edit={"edit-department"}
       path={"department"}
+      listClass = {"no-img"}
       />
 
     </div>

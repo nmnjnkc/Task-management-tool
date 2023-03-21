@@ -10,7 +10,9 @@ const EmployeesPage = () => {
   const {employees, setEmpUpdate, tasks, empUpdate} = useContext(ApplicationContext)
 
 
-  const tasksPastM = tasks?.filter(task => task?.assignedDate  > 2592000000 );
+  const now = new Date().getTime();
+
+  const tasksPastM = tasks?.filter(task => task?.assignedDate  > now - (1000*60*60*24*30) );
 
   const doneTasks = tasksPastM?.filter(task => task?.taskStatus === "Done");
 
@@ -52,12 +54,14 @@ const EmployeesPage = () => {
         <h2>All Employees</h2>
         <CardWrapper 
         createPage={"/create-new-employee"} 
-        deleteEmployee={deleteEmployee}
+        deleteURL={"https://640b1ad481d8a32198d9d28b.mockapi.io/Employee/"}
+        refreshData = {setEmpUpdate}
         setClass={"employeesCard"}
         surchArray={employees} 
         searchKey={"fullName"}
         edit={"edit-employee"}
         path={"employee"}
+
         />
 
       </div>
