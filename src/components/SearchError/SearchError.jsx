@@ -2,9 +2,9 @@ import React from "react"
 import "./SearchError.scss"
 
 
-const SearchError = ({message}) => {
+const SearchError = ({message, errorClass}) => {
     return (
-        <div className="searchError">
+        <div className={`searchError ${errorClass}`}>
             <p>
                {message}       
             </p>

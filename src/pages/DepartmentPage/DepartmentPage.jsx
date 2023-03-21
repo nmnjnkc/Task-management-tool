@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext} from 'react'
 import { useParams } from 'react-router';
 import ApplicationContext from '../../ApplicationContext';
 import SearchError from '../../components/SearchError/SearchError';
@@ -6,13 +6,10 @@ import SearchError from '../../components/SearchError/SearchError';
 const DepartmentPage = () => {
 
   const {departments, employees} = useContext(ApplicationContext);
-  const [showError, setShowError] = useState(false);
 
   let { departmentId } = useParams();
 
-  const allDepartmentsIds = departments?.map(dep => dep.id)
   const currentDep = departments?.find((department) => department.id == departmentId)
-  const noDep = allDepartmentsIds?.some(id => id == departmentId)
 
   const depEmployees = employees?.filter(emp => emp?.department?.toLowerCase() === currentDep?.department?.toLowerCase())
 
@@ -22,18 +19,13 @@ const DepartmentPage = () => {
     day: 'numeric' 
   };
 
-  useEffect(() => {
-    let timeoutId;
-    if (noDep === false) {
-      timeoutId = setTimeout(() => {
-        setShowError(true);
-      }, 600); 
-    }
 
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [noDep]);
+
+  if (!currentDep) {
+    return (
+    <SearchError errorClass={"error-view"} message={"There's no such Employee."} />
+    );
+  }
 
   return (
     <div className="showing-page">
@@ -43,7 +35,6 @@ const DepartmentPage = () => {
         {depEmployees?.map((emp) => {
           return <span>{emp?.fullName}</span>
         })}
-      {showError && <SearchError message={"There's no such Department."}/>}
       
     </div>
   )
