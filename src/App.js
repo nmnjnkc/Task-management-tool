@@ -32,7 +32,7 @@ function App() {
 
 
   const theTaskDifficulty = ["Easy", "Medium", "Hard", "Extreme"]; 
-  const theTaskStatus = ["ToDo", "Active", "Done", "Blocked"];
+  const theTaskStatus = ["ToDo", "Active", "Blocked"];
 
   const url = new URL("https://640b1ad481d8a32198d9d28b.mockapi.io/Employee");
   url.searchParams.append('completed', false);
@@ -80,8 +80,8 @@ useEffect(() =>
       departmentList();
     }, [depUpdate]
   );
-// console.log(employees, tasks, departments);
- 
+
+  
 
     return (
       
@@ -97,7 +97,6 @@ useEffect(() =>
         theTaskStatus
       }}>
     <div>
-      {/* <Header/> */}
       <div className='main'>
       <Navigation/>
       <Routes>
@@ -119,7 +118,6 @@ useEffect(() =>
         <Route path="*" element={<ErrorPage/>}/>
       </Routes>
       </div>
-      {/* <Footer/> */}
     </div>
     </ApplicationContext.Provider>
     

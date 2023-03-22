@@ -1,14 +1,14 @@
-.searchError{
-    *{
-        font-size: 55px;
-    }
+.searchError {
+  * {
+    font-size: 55px;
+  }
 }
 
-.error-view{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-width: 85%;
-    min-height: 100vh;
+.error-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 85%;
+  min-height: 100vh;
 }

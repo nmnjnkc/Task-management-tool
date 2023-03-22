@@ -1,11 +1,8 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import Button from "../Button/Button";
 import "./Modal.scss";
 
-const Modal = ({ id, refreshData, deleteURL, setModalActive, modalActive }) => {
-
-   
-
+const Modal = ({ id, refreshData, deleteURL, setModalActive }) => {
   const handleEsc = (event) => {
     if (event.key === "Escape") {
       setModalActive(false);
@@ -18,8 +15,6 @@ const Modal = ({ id, refreshData, deleteURL, setModalActive, modalActive }) => {
       window.removeEventListener("keydown", handleEsc);
     };
   }, []);
-
-
 
   const deleteReport = () => {
     fetch(`${deleteURL}/${id}`, {
@@ -35,10 +30,7 @@ const Modal = ({ id, refreshData, deleteURL, setModalActive, modalActive }) => {
   };
 
   return (
-    <div
-      className="modal-bg"
-      onClick={() => setModalActive(false)}
-    >
+    <div className="modal-bg" onClick={() => setModalActive(false)}>
       <div
         className="modal-content"
         onClick={(event) => {
@@ -48,20 +40,18 @@ const Modal = ({ id, refreshData, deleteURL, setModalActive, modalActive }) => {
         <p>Delete forever?</p>
         <p>THIS CANNOT BE UNDONE!</p>
         <div>
-      
-          <Button name={"Yes"} method={()=>{
-             
+          <Button
+            name={"Yes"}
+            method={() => {
               deleteReport();
-              setModalActive(false)
-              }
-          }/>
-           <Button name={"No"} method={ () =>
-              setModalActive(false)
-              }/>
+              setModalActive(false);
+            }}
+          />
+          <Button name={"No"} method={() => setModalActive(false)} />
         </div>
       </div>
     </div>
   );
 };
 
-export default Modal
+export default Modal;

@@ -1,4 +1,3 @@
-
 .modal-bg {
   position: fixed;
   top: 0;
@@ -13,45 +12,43 @@
   z-index: 1;
 }
 
+.modal-content {
+  background-color: #9fc4c8;
+  color: black;
+  border-radius: 10px;
 
-  .modal-content {
-    background-color: #9fc4c8;
-    color: black;
-    border-radius: 10px;
+  width: 40%;
+  height: 25%;
 
-    width: 40%;
-    height: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  scrollbar-width: none;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    scrollbar-width: none;
+  p {
+    font-size: 25px;
+    font-weight: 700;
+    padding: 5px;
+    color: #37828a;
+  }
+  div {
+    margin-top: 30px;
+  }
 
-     p{
-      font-size: 25px;
-      font-weight: 700;
-      padding: 5px;
-      color: #37828a;
-    } 
-    div{
-      margin-top: 30px;
-    }
+  button {
+    font-size: 18px;
 
-     button {
-      font-size: 18px;
-
-      background-color: #bfdbdedb;
+    background-color: #bfdbdedb;
     border-radius: 5px;
     padding: 5px 10px;
     color: #37828a;
     width: 100px;
     font-weight: 700;
     border: none;
-    margin:  0 25px;
-    } 
+    margin: 0 25px;
   }
-  
+}
 
 // .modal {
 //   position: fixed;

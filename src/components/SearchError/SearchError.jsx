@@ -1,15 +1,12 @@
-import React from "react"
-import "./SearchError.scss"
+import React from "react";
+import "./SearchError.scss";
 
+const SearchError = ({ message, errorClass }) => {
+  return (
+    <div className={`searchError ${errorClass}`}>
+      <p>{message}</p>
+    </div>
+  );
+};
 
-const SearchError = ({message, errorClass}) => {
-    return (
-        <div className={`searchError ${errorClass}`}>
-            <p>
-               {message}       
-            </p>
-        </div>
-    )
-}
-
-export default SearchError
+export default SearchError;

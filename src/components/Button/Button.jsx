@@ -1,17 +1,18 @@
 import React from "react";
 import "./Button.scss";
 
-const Button = ({ name, method, classes, disabled=false}) => {
+const Button = ({ name, method, classes, disabled = false }) => {
   return (
-    
-      <button disabled={disabled} onClick={(e) => {
-        e?.stopPropagation()      
-        method()
+    <button
+      disabled={disabled}
+      onClick={(e) => {
+        e?.stopPropagation();
+        method();
       }}
-         className={classes}>
-        {name}
-      </button>
-    
+      className={classes}
+    >
+      {name}
+    </button>
   );
 };
 export default Button;

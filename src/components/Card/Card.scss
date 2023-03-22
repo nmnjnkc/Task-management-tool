@@ -1,158 +1,153 @@
 // Card view
 
-.card{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #def2f4;
-    border-radius: 12px;
-    height: 90px;
-    background-color: #d5e7e9;
-    box-shadow: 2px 2px 2px #00000033;
-    transition: transform 0.2s ease-out;
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #def2f4;
+  border-radius: 12px;
+  height: 90px;
+  background-color: #d5e7e9;
+  box-shadow: 2px 2px 2px #00000033;
+  transition: transform 0.2s ease-out;
+  color: #37828a;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  button {
+    background-color: #bfdbdedb;
+    border-radius: 5px;
+    padding: 5px;
     color: #37828a;
-    
-    &:hover {
-        transform: scale(1.05);
-      }
-
-    button{
-        background-color: #bfdbdedb;
-        border-radius: 5px;
-        padding: 5px;
-        color: #37828a;
-        width: 60px;
-        font-weight: 800;
-        border: none;
-        margin: 5px;
-    }
-    button:hover {
-        color: #ec8477;
-        border: 1px solid #ec8477;
-      }
-    
-
-      
+    width: 60px;
+    font-weight: 800;
+    border: none;
+    margin: 5px;
+  }
+  button:hover {
+    color: #ec8477;
+    border: 1px solid #ec8477;
+  }
 }
 
-.tasksCard{
-    
-    min-width: 27%;
-    height: 90px;
-    margin: 17px;
+.tasksCard {
+  min-width: 27%;
+  height: 120px;
+  margin: 15px;
 
-    h3{
-        padding: 18px 20px 12px;
-    }
+  h3 {
+    padding: 18px 20px 12px;
+  }
 
-    .displayImg{
-        display: none;
-    }
+  .display-checkbox{
+margin-bottom: 5px;  }
 
+  .displayImg {
+    display: none;
+  }
 }
 
-.employeesCard{
+.employeesCard {
+  min-width: 29%;
+  height: 220px;
+  margin: 12px;
 
-    min-width: 29%;
-    height: 220px;
-    margin: 12px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
 
-    
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 15px;
+  h3 {
+    padding: 10px;
+    font-size: 16px;
+  }
+  .display-checkbox{
+    display: none;
+  }
 
-        h3{
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        .displayImg{
-            margin-top: 10px;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: none;
-   
+  .displayImg {
+    margin-top: 10px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: none;
+  }
 }
 
-}
+.departmentsCard {
+  min-width: 45%;
+  height: 190px;
+  margin: 20px;
 
-.departmentsCard{
-    min-width: 45%;
-    height: 190px;
-    margin: 20px;
+  button {
+    padding: 5px;
+    width: 90px;
+  }
 
-    button{
-        padding: 5px;
-        width: 90px;
-    }
+  h3 {
+    font-size: 32px;
+    padding: 40px;
+  }
 
-    h3{
-        font-size: 32px;
-        padding: 40px;
-    }
+  .displayImg {
+    display: none;
+  }
 
-
-    .displayImg{
-        display: none;
-    }
-
-
-
+  .display-checkbox{
+    display: none;
+  }
 }
 
 // list view
 
 .list {
-    
-    padding: 20px;
-    border-bottom: 1px solid #000;
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    width: 80%; 
-    height: 100px;
+  padding: 20px;
+  border-bottom: 1px solid #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 80%;
+  height: 100px;
+  color: #37828a;
+
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    float: left;
+  }
+
+  h3 {
+    margin-left: 20px;
+    font-size: 1.5em;
+  }
+
+  button {
+    background-color: #bfdbdedb;
+    border-radius: 5px;
+    padding: 5px;
     color: #37828a;
-
-
-
-    img {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        float: left;
-    }
-    
-    
-    h3 {
-      margin-left: 20px;
-      font-size: 1.5em;
-    }
-
-    button{
-      background-color: #bfdbdedb;
-      border-radius: 5px;
-      padding: 5px;
-      color: #37828a;
-      width: 60px;
-      font-weight: 800;
-      border: none;
-      margin: 5px;
+    width: 60px;
+    font-weight: 800;
+    border: none;
+    margin: 5px;
   }
   button:hover {
-      color: #ec8477;
-      border: 1px solid #ec8477;
-    }
-   
-
+    color: #ec8477;
+    border: 1px solid #ec8477;
   }
+}
 
-  .no-img{
+.no-img {
+  .displayImg {
+    display: none;
+  }
+}
 
-    .displayImg{
-        display: none;
-    }
-
+.no-checkbox{
+.display-checkbox{
+  display: none;
+}
 }
