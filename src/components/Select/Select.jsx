@@ -23,6 +23,7 @@ const Select = ({
         onChange={handleSelectChange}
         required={true ? required : null}
       >
+        <option value=""> </option>
         {makeArray.map((element, key) => {
           return (
             <option
